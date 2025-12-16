@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry Asawo | Developer & Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #1abc9c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, #0c0c2e 0%, #1a1a3e 100%);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Water Drops Animation */
+        .water-drops {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .water-drop {
+            position: absolute;
+            background: radial-gradient(circle, rgba(52, 152, 219, 0.15) 0%, rgba(26, 188, 156, 0.05) 70%, transparent 100%);
+            border-radius: 50%;
+            animation: waterDrop 8s infinite ease-in-out;
+        }
+        
+        @keyframes waterDrop {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.1);
+                opacity: 0.6;
+            }
+        }
+        
+        /* Wire Connections Animation */
+        .wire-connections {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .wire {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            height: 1px;
+            transform-origin: left center;
+            animation: wirePulse 4s infinite ease-in-out;
+        }
+        
+        @keyframes wirePulse {
+            0%, 100% {
+                opacity: 0.1;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+        
+        .connection-node {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: nodePulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes nodePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.7);
+            }
+            50% {
+                transform: scale(1.3);
+                box-shadow: 0 0 0 4px rgba(26, 188, 156, 0);
+            }
+        }
+        
+        /* Header with Bold Profile Picture */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+        
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 0 0 12px rgba(52, 152, 219, 0.2),
+                0 0 40px 20px rgba(52, 152, 219, 0.3),
+                0 0 80px 40px rgba(26, 188, 156, 0.2);
+            animation: profileGlow 4s infinite alternate;
+            position: relative;
+            z-index: 1;
+            filter: brightness(1.1) contrast(1.1);
+        }
+        
+        @keyframes profileGlow {
+            0% {
+                box-shadow: 
+                    0 0 0 12px rgba(52, 152, 219, 0.2),
+                    0 0 40px 20px rgba(52, 152, 219, 0.3),
+                    0 0 80px 40px rgba(26, 188, 156, 0.2);
+            }
+            100% {
+                box-shadow: 
+                    0 0 0 12px rgba(52, 152, 219, 0.3),
+                    0 0 50px 25px rgba(52, 152, 219, 0.4),
+                    0 0 100px 50px rgba(26, 188, 156, 0.3);
+            }
+        }
+        
+        .profile-ring {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            border-right-color: var(--accent-color);
+            border-bottom-color: var(--primary-color);
+            border-left-color: var(--accent-color);
+            animation: rotateRing 10s linear infinite;
+        }
+        
+        @keyframes rotateRing {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ffffff, var(--primary-color), #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+            animation: titleGlow 3s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 40px rgba(52, 152, 219, 0.8), 0 0 60px rgba(26, 188, 156, 0.5);
+            }
+        }
+        
+        .tagline {
+            font-size: 1.6rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.8rem;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .social-links a:hover::before {
+            left: 100%;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-10px) scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Main Content Sections */
+        main {
+            position: relative;
+            z-index: 2;
+        }
+        
+        section {
+            padding: 100px 20px;
+            position: relative;
+        }
+        
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            font-size: 2.8rem;
+            position: relative;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), var(--primary-color), transparent);
+            margin: 20px auto 40px;
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: rgba(10, 10, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            background: rgba(15, 15, 40, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .author-info h4 {
+            color: white;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+        
+        .author-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+        
+        .quote-icon {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            opacity: 0.5;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            background: rgba(10, 10, 30, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .filter-btn {
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-img-container {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gallery-content h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .gallery-content p {
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .project-tag {
+            background: rgba(52, 152, 219, 0.2);
+            color: var(--primary-color);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+        
+        .gallery-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .gallery-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+        }
+        
+        .gallery-link.primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+        }
+        
+        .gallery-link.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gallery-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-link.primary:hover {
+            background: linear-gradient(90deg, #2980b9, #16a085);
+        }
+        
+        .gallery-link.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: rgba(15, 15, 40, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        
+        .contact-card h3 {
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .contact-link {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-detail {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        
+        .call-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .call-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #128C7E, #0d6e5d);
+        }
+        
+        .call-button i {
+            margin-right: 10px;
+        }
+        
+        /* Contact Summary */
+        .contact-summary {
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-summary h3 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .contact-summary-grid {
+            display: inline-grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-summary-item {
+            text-align: left;
+            padding: 10px 0;
+        }
+        
+        .contact-summary-item i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            width: 30px;
+        }
+        
+        .contact-summary-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-summary-item a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 20, 0.9);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+        
+        .footer-text {
+            opacity: 0.7;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .footer-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .profile-img {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .social-links a {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .social-links {
+                gap: 15px;
+            }
+            
+            .social-links a {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .testimonials-container,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 30, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+                gap: 0;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links a {
+                padding: 15px 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .about-content {
+                gap: 40px;
+            }
+            
+            .gallery-img-container {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 70px 20px;
+            }
+        }
+        
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Water Drops Animation -->
+    <div class="water-drops" id="waterDrops"></div>
+    
+    <!-- Wire Connections Animation -->
+    <div class="wire-connections" id="wireConnections"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="#" class="logo">HA</a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#gallery">Projects & Research</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="profile-img-container fade-in">
+                <div class="profile-ring"></div>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Profile Picture" class="profile-img">
+            </div>
+            <h1 class="fade-in delay-1">Henry Asawo D</h1>
+            <p class="tagline fade-in delay-2">Project Research Writer | Published Author | Educational Consultant</p>
+            
+            <div class="social-links fade-in delay-3">
+                <a href="mailto:henryasawo@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://wa.me/09023701154" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://linkedin.com/in/henryasawo" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="tel:+2349023701154" title="Call">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-content">
+                <h2 class="section-title fade-in">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <p>Hello! I'm Henry Asawo D, a passionate full-stack developer and technology researcher with over 5 years of experience building innovative web applications and conducting cutting-edge research in human-computer interaction.</p>
+                        <p>My expertise includes JavaScript, React, Node.js, Python, and cloud technologies. I've published several research papers on UI/UX optimization and AI-driven development tools in reputable journals.</p>
+                        <p>When I'm not coding or writing, you can find me hiking, reading tech blogs, or experimenting with new programming frameworks. I'm always open to discussing new projects, creative ideas, or research collaborations.</p>
+                    </div>
+                    <div class="about-text fade-in delay-1">
+                        <p>I'm committed to delivering high-quality work and ensuring that every project I undertake exceeds expectations. My approach combines technical expertise with research-backed insights to create solutions that are both functional and delightful to use.</p>
+                        <p>I've worked with startups and established companies across various industries, helping them transform their ideas into successful digital products. My research work has been cited over 200 times in academic literature.</p>
+                        <p>Let's connect and explore how we can work together to bring your project to life or collaborate on research!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="section-content">
+                <h2 class="section-title fade-in">Client & Colleague Testimonials</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">"Alex transformed our legacy system into a modern, efficient platform. His attention to detail and problem-solving skills are exceptional. The project was delivered ahead of schedule with outstanding quality."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sarah Miller" class="testimonial-img">
+                            <div class="author-info">
+                                <h4>Sarah Miller</h4>
+                                <p>CTO, TechSolutions Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in delay-1">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">"Working with Alex on our research paper was a pleasure. His technical expertise combined with his ability to articulate complex concepts made our collaboration incredibly productive. The paper was well-received at the conference."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Dr. James Wilson" class="testimonial-img">
+                            <div class="author-info">
+                                <h4>Dr. James Wilson</h4>
+                                <p>Professor, Stanford University</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in delay-2">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">"Alex's development skills are top-notch, but what really sets him apart is his user-centered approach. He consistently prioritizes the end-user experience, resulting in products that are not only functional but also intuitive and enjoyable to use."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael Chen" class="testimonial-img">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <p>Product Lead, InnovateCo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="section-content">
+                <h2 class="section-title fade-in">Projects & Research Gallery</h2>
+                <p style="text-align: center; margin-bottom: 50px; font-size: 1.2rem; color: rgba(255, 255, 255, 0.8);">A showcase of my recent projects, research papers, and publications.</p>
+                
+                <div class="gallery-filter fade-in">
+                    <button class="filter-btn active" data-filter="all">All Work</button>
+                    <button class="filter-btn" data-filter="project">Projects</button>
+                    <button class="filter-btn" data-filter="research">Research</button>
+                    <button class="filter-btn" data-filter="publication">Publications</button>
+                </div>
+                
+                <div class="gallery-grid">
+                    <!-- Project 1 -->
+                    <div class="gallery-item fade-in" data-category="project">
+                        <div class="gallery-img-container">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Platform" class="gallery-img">
+                        </div>
+                        <div class="gallery-content">
+                            <h3>Next-Gen E-commerce Platform</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">Node.js</span>
+                                <span class="project-tag">MongoDB</span>
+                            </div>
+                            <p>A full-featured e-commerce solution with AI-powered recommendations, real-time inventory management, and seamless payment integration.</p>
+                            <div class="gallery-links">
+                                <a href="#" class="gallery-link primary">Live Demo</a>
+                                <a href="#" class="gallery-link secondary">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Research 1 -->
+                    <div class="gallery-item fade-in delay-1" data-category="research">
+                        <div class="gallery-img-container">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Research" class="gallery-img">
+                        </div>
+                        <div class="gallery-content">
+                            <h3>AI-Driven Code Optimization</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Machine Learning</span>
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Research</span>
+                            </div>
+                            <p>Research paper on using machine learning algorithms to optimize JavaScript code performance. Published in IEEE Transactions on Software Engineering.</p>
+                            <div class="gallery-links">
+                                <a href="#" class="gallery-link primary">Read Paper</a>
+                                <a href="#" class="gallery-link secondary">Citation</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="gallery-item fade-in delay-2" data-category="project">
+                        <div class="gallery-img-container">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Health App" class="gallery-img">
+                        </div>
+                        <div class="gallery-content">
+                            <h3>Health Monitoring Dashboard</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Vue.js</span>
+                                <span class="project-tag">Express</span>
+                                <span class="project-tag">PostgreSQL</span>
+                            </div>
+                            <p>A comprehensive health data visualization platform for medical professionals to track patient metrics and identify trends.</p>
+                            <div class="gallery-links">
+                                <a href="#" class="gallery-link primary">View Project</a>
+                                <a href="#" class="gallery-link secondary">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Publication 1 -->
+                    <div class="gallery-item fade-in delay-3" data-category="publication">
+                        <div class="gallery-img-container">
+                            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Book Cover" class="gallery-img">
+                        </div>
+                        <div class="gallery-content">
+                            <h3>Modern Web Development Patterns</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Book</span>
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">Architecture</span>
+                            </div>
+                            <p>Published in 2022, this book explores contemporary web development patterns and best practices for building scalable applications.</p>
+                            <div class="gallery-links">
+                                <a href="#" class="gallery-link primary">Buy on Amazon</a>
+                                <a href="#" class="gallery-link secondary">Sample Chapter</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Research 2 -->
+                    <div class="gallery-item fade-in delay-4" data-category="research">
+                        <div class="gallery-img-container">
+                            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="UX Research" class="gallery-img">
+                        </div>
+                        <div class="gallery-content">
+                            <h3>Accessibility in Modern Web Design</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">UX Research</span>
+                                <span class="project-tag">Accessibility</span>
+                                <span class="project-tag">WCAG</span>
+                            </div>
+                            <p>A comprehensive study on implementing accessibility standards in modern web applications, with case studies from Fortune 500 companies.</p>
+                            <div class="gallery-links">
+                                <a href="#" class="gallery-link primary">Read Study</a>
+                                <a href="#" class="gallery-link secondary">Methodology</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="gallery-item fade-in delay-5" data-category="project">
+                        <div class="gallery-img-container">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Analytics Dashboard" class="gallery-img">
+                        </div>
+                        <div class="gallery-content">
+                            <h3>Real-Time Analytics Platform</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">D3.js</span>
+                                <span class="project-tag">WebSocket</span>
+                            </div>
+                            <p>An interactive data visualization platform that processes and displays real-time analytics from multiple data sources.</p>
+                            <div class="gallery-links">
+                                <a href="#" class="gallery-link primary">Live Demo</a>
+                                <a href="#" class="gallery-link secondary">Technical Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-content">
+                <h2 class="section-title fade-in">Get In Touch</h2>
+                <p style="text-align: center; margin-bottom: 50px; font-size: 1.2rem; color: rgba(255, 255, 255, 0.8);">Feel free to reach out through any of the following channels. I typically respond within 24 hours.</p>
+                
+                <div class="contact-grid">
+                    <!-- Email Card -->
+                    <div class="contact-card fade-in">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p class="contact-detail">Send me an email for professional inquiries, collaborations, or detailed project discussions.</p>
+                        <a href="mailto:alex.johnson@example.com" class="contact-link">Send Email</a>
+                    </div>
+                    
+                    <!-- WhatsApp Card -->
+                    <div class="contact-card fade-in delay-1">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p class="contact-detail">For quick messages or informal chats. Perfect for brief questions or voice messages.</p>
+                        <a href="https://wa.me/15551234567" class="contact-link" target="_blank">Message on WhatsApp</a>
+                    </div>
+                    
+                    <!-- LinkedIn Card -->
+                    <div class="contact-card fade-in delay-2">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <p class="contact-detail">Connect with me professionally. Let's network and explore career opportunities.</p>
+                        <a href="https://linkedin.com/in/alexjohnson" class="contact-link" target="_blank">View Profile</a>
+                    </div>
+                    
+                    <!-- Phone Card -->
+                    <div class="contact-card fade-in delay-3">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Direct Call</h3>
+                        <p class="contact-detail">For urgent matters or if you prefer talking directly. Available during business hours.</p>
+                        <a href="tel:+15551234567" class="call-button">
+                            <i class="fas fa-phone-alt"></i> Call Now
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-summary">
+                    <h3>Contact Details Summary</h3>
+                    <div class="contact-summary-grid">
+                        <div class="contact-summary-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:alex.johnson@example.com">alex.johnson@example.com</a>
+                        </div>
+                        <div class="contact-summary-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/09023701154">+234 (0) 902-370-1154</a>
+                        </div>
+                        <div class="contact-summary-item">
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://linkedin.com/in/alexjohnson">linkedin.com/in/alexjohnson</a>
+                        </div>
+                        <div class="contact-summary-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+2349023701154">+234 (0) 902-370-1154</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="section-content">
+            <p>&copy; <span id="currentYear"></span> Henry Asawo. All rights reserved.</p>
+            <p class="footer-text">This profile page is hosted on GitHub Pages.</p>
+            <div class="footer-links">
+                <a href="mailto:alex.johnson@example.com">Email</a>
+                <a href="https://wa.me/09023701154">WhatsApp</a>
+                <a href="https://linkedin.com/in/alexjohnson">LinkedIn</a>
+                <a href="tel:+15551234567">Call</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Create Water Drops
+        const waterDropsContainer = document.getElementById('waterDrops');
+        for (let i = 0; i < 20; i++) {
+            const drop = document.createElement('div');
+            drop.classList.add('water-drop');
+            
+            // Random position
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            drop.style.left = `${left}%`;
+            drop.style.top = `${top}%`;
+            
+            // Random size
+            const size = 30 + Math.random() * 70;
+            drop.style.width = `${size}px`;
+            drop.style.height = `${size}px`;
+            
+            // Random animation delay
+            drop.style.animationDelay = `${Math.random() * 5}s`;
+            
+            waterDropsContainer.appendChild(drop);
+        }
+        
+        // Create Wire Connections
+        const wireContainer = document.getElementById('wireConnections');
+        const nodes = [];
+        
+        // Create nodes
+        for (let i = 0; i < 15; i++) {
+            const node = document.createElement('div');
+            node.classList.add('connection-node');
+            
+            // Random position
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            node.style.left = `${left}%`;
+            node.style.top = `${top}%`;
+            
+            // Random animation delay
+            node.style.animationDelay = `${Math.random() * 2}s`;
+            
+            wireContainer.appendChild(node);
+            nodes.push({x: left, y: top, element: node});
+        }
+        
+        // Create wires between nodes
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                // Only connect nodes that are relatively close
+                const distance = Math.sqrt(
+                    Math.pow(nodes[i].x - nodes[j].x, 2) + 
+                    Math.pow(nodes[i].y - nodes[j].y, 2)
+                );
+                
+                if (distance < 30) { // Adjust this value to change connection density
+                    const wire = document.createElement('div');
+                    wire.classList.add('wire');
+                    
+                    // Calculate position and angle
+                    const x1 = nodes[i].x;
+                    const y1 = nodes[i].y;
+                    const x2 = nodes[j].x;
+                    const y2 = nodes[j].y;
+                    
+                    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                    
+                    wire.style.width = `${length}%`;
+                    wire.style.left = `${x1}%`;
+                    wire.style.top = `${y1}%`;
+                    wire.style.transform = `rotate(${angle}deg)`;
+                    
+                    // Random animation delay
+                    wire.style.animationDelay = `${Math.random() * 2}s`;
+                    
+                    wireContainer.appendChild(wire);
+                }
+            }
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Gallery filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'flex';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Scroll progress bar
+        const scrollProgress = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + "%";
+            
+            // Navbar background on scroll
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 100) {
+                nav.style.backgroundColor = 'rgba(5, 5, 20, 0.95)';
+                nav.style.backdropFilter = 'blur(15px)';
+            } else {
+                nav.style.backgroundColor = 'rgba(10, 10, 30, 0.9)';
+                nav.style.backdropFilter = 'blur(10px)';
+            }
+        });
+        
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.testimonial-card, .gallery-item, .contact-card, .section-title, .about-text, .gallery-filter').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Make water drops move with mouse
+        document.addEventListener('mousemove', (e) => {
+            const drops = document.querySelectorAll('.water-drop');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            drops.forEach((drop, index) => {
+                // Calculate distance from mouse
+                const dropX = parseFloat(drop.style.left) / 100;
+                const dropY = parseFloat(drop.style.top) / 100;
+                
+                const distance = Math.sqrt(
+                    Math.pow(mouseX - dropX, 2) + 
+                    Math.pow(mouseY - dropY, 2)
+                );
+                
+                // If close to mouse, push away slightly
+                if (distance < 0.1) {
+                    const pushX = (dropX - mouseX) * 2;
+                    const pushY = (dropY - mouseY) * 2;
+                    
+                    drop.style.transform = `translate(${pushX}px, ${pushY}px) scale(1.1)`;
+                }
+            });
+        });
+        
+        // Reset water drop positions on mouse leave
+        document.addEventListener('mouseleave', () => {
+            const drops = document.querySelectorAll('.water-drop');
+            drops.forEach(drop => {
+                drop.style.transform = 'translate(0, 0) scale(1)';
+            });
+        });
+        
+        // Simple form submission simulation
+        document.querySelectorAll('.contact-link, .gallery-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('mailto') || 
+                   this.getAttribute('href').startsWith('tel') ||
+                   this.getAttribute('href').startsWith('http')) {
+                    return; // Allow default behavior
+                }
+                e.preventDefault();
+                alert('This would open a detailed view in a real implementation.');
+            });
+        });
+        
+        // Animate profile picture on hover
+        const profileImg = document.querySelector('.profile-img');
+        const profileRing = document.querySelector('.profile-ring');
+        
+        profileImg.addEventListener('mouseenter', () => {
+            profileRing.style.animationDuration = '5s';
+        });
+        
+        profileImg.addEventListener('mouseleave', () => {
+            profileRing.style.animationDuration = '10s';
+        });
+    </script>
+</body>
+</html>
